@@ -26,10 +26,9 @@ ui <- fluidPage(
                        choices = list("Oui" = 1, "Non" = 2 ), 
                        selected = 1),
           
-          hr(),
-          fluidRow(column(2, verbatimTextOutput("value")))
           
-          selectInput("Color_Input", "Choisir une couleur à filtrer :", choices = unique(diamonds$color), selected = "D"),
+          selectInput("Color_Input", "Choisir une couleur à filtrer :",
+                      choices = unique(diamonds$color)),
           
             sliderInput("price",
                         "Prix maximum :",
@@ -48,8 +47,7 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   
-  thematic::thematic_shiny(font = "Minty")
-  
+ 
     output$diamondsplot <- renderPlot({
       diamonds %>%
         filter(color == input$Color_Input) %>%    
